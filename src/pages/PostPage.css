@@ -1,0 +1,14 @@
+.postpage-container { max-width: 760px; margin: 0 auto; padding: 20px 0; }
+.back-link { display: inline-block; margin-bottom: 12px; text-decoration: none; color: #0b5cab; }
+.back-link:hover { text-decoration: underline; }
+
+.postpage-title { font-size: 28px; line-height: 1.25; margin: 8px 0 4px; }
+.postpage-date { color: #666; font-size: 14px; margin-bottom: 16px; }
+
+.postpage-hero { width: 100%; height: auto; border-radius: 8px; margin: 12px 0 16px; object-fit: cover; }
+
+.postpage-body { font-size: 16px; line-height: 1.7; color: #222; }
+.postpage-body p { margin: 0 0 14px; }
+.postpage-body img { max-width: 100%; height: auto; border-radius: 6px; }
+.postpage-body a { color: #0b5cab; text-decoration: none; }
+.postpage-body a:hover { text-decoration: underline; }

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./WordPressPostsFeed.css";
 
 function stripHtml(input) {
@@ -56,44 +57,36 @@ export default function WordPressPostsFeed({
       {error && <div className="error">{error}</div>}
 
       <div className="posts-list">
-        {posts.map((p) => {
+      {posts.map((p) => {
           const media = p._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+          const to = `/post/${p.id}/${p.slug || ""}`;
           return (
-            <article key={p.id} className="post">
+              <article key={p.id} className="post">
               {media && (
-                <a
-                  href={p.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="post-image-link"
-                >
+                  <Link to={to} className="post-image-link">
                   <img src={media} alt="" className="post-image" />
-                </a>
+                  </Link>
               )}
               <div className="post-content">
-                <a href={p.link} target="_blank" rel="noreferrer">
-                  <h3 className="post-title">
-                    {stripHtml(p.title?.rendered) || "(Untitled)"}
-                  </h3>
-                </a>
-                <p className="post-date">
-                  {new Date(p.date).toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>
-                <p className="post-excerpt">
-                  {stripHtml(p.excerpt?.rendered) || ""}
-                </p>
+              <Link to={to} className="post-title-link">
+              <h3 className="post-title">
+              {stripHtml(p.title?.rendered) || "(Untitled)"}
+              </h3>
+              </Link>
+              <p className="post-date">
+              {new Date(p.date).toLocaleDateString(undefined, {
+                  year: "numeric", month: "short", day: "numeric",
+              })}
+              </p>
+              <p className="post-excerpt">{stripHtml(p.excerpt?.rendered) || ""}</p>
               </div>
-            </article>
+              </article>
           );
-        })}
+      })}
       </div>
 
       {canLoadMore && (
-        <button
+          <button
           ref={loadMoreRef}
           onClick={() => setPage((p) => p + 1)}
           disabled={loading}
